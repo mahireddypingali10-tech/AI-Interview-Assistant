@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>AI Interview</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="main">
+
+<h1>🤖 AI Mock Interview</h1>
+
+<br>
+
+<div class="card">
+
+<form action="/start-interview" method="POST">
+
+<label>
+
+<i class="fa-solid fa-briefcase"></i>
+
+Select Job Role
+
+</label>
+
+<br><br>
+
+<select name="role">
+
+<option>Python Developer</option>
+
+<option>Frontend Developer</option>
+
+<option>Full Stack Developer</option>
+
+<option>Data Analyst</option>
+
+</select>
+
+<br><br>
+
+<label>
+
+<i class="fa-solid fa-layer-group"></i>
+
+Difficulty
+
+</label>
+
+<br><br>
+
+<select name="difficulty">
+
+<option>Easy</option>
+
+<option>Medium</option>
+
+<option>Hard</option>
+
+</select>
+
+<br><br>
+
+<label>
+
+<i class="fa-solid fa-list-check"></i>
+
+Questions
+
+</label>
+
+<br><br>
+
+<select name="questions">
+
+<option>5</option>
+
+<option>10</option>
+
+<option>15</option>
+
+</select>
+
+<br><br>
+
+<button type="submit">
+
+🚀 Start Interview
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>🤖 InterviewAI</h2>
+
+    <ul>
+
+        <li class="active">
+            <i class="fa-solid fa-house"></i>
+            Dashboard
+        </li>
+
+        <li>
+            <i class="fa-solid fa-microphone"></i>
+            AI Interview
+        </li>
+
+        <li>
+            <i class="fa-solid fa-file"></i>
+            Resume Analyzer
+        </li>
+
+        <li>
+            <i class="fa-solid fa-chart-line"></i>
+            Performance
+        </li>
+
+        <li>
+            <i class="fa-solid fa-gear"></i>
+            Settings
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<h1>
+
+Welcome,
+{{ user }}
+
+👋
+
+</h1>
+
+<a href="/logout" class="logout">
+
+Logout
+
+</a>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<h2>Python</h2>
+
+<h1>{{ performance.python_score }}%</h1>
+
+</div>
+
+<div class="card">
+
+<h2>SQL</h2>
+
+<h1>{{ performance.sql_score }}%</h1>
+
+</div>
+
+<div class="card">
+
+<h2>Resume</h2>
+
+<h1>{{ performance.resume_score }}%</h1>
+
+</div>
+
+<div class="card">
+
+<h2>Mock Tests</h2>
+
+<h1>{{ performance.mock_tests }}</h1>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<h2>
+
+Quick Actions
+
+</h2>
+
+<a href="/interview">
+
+<button>
+
+🚀 Start AI Interview
+
+</button>
+
+</a>
+
+<button>📄 Resume Analyzer</button>
+
+<button>💻 Coding Practice</button>
+
+<button>📊 Performance</button>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
