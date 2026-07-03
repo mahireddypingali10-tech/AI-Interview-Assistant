@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>AI Interview</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+
+<body>
+
+<div class="main">
+
+<h1>🤖 AI Interview</h1>
+
+<h3>Role : {{ role }}</h3>
+
+<h4>Difficulty : {{ difficulty }}</h4>
+
+<hr>
+
+<pre style="white-space:pre-wrap;font-size:18px;line-height:2;">
+{{ questions }}
+</pre>
+
+</div>
+
+</body>
+
+</html>

@@ -1,3 +1,4 @@
+from ai import generate_questions
 from flask import Flask, render_template, request, redirect, url_for, session
 from database import get_db_connection
 import bcrypt
@@ -144,20 +145,20 @@ def start_interview():
 
     role = request.form["role"]
     difficulty = request.form["difficulty"]
+    questions = int(request.form["questions"])
 
-    return f"""
-    <h1>Interview Started</h1>
+    ai_questions = generate_questions(
+        role,
+        difficulty,
+        questions
+    )
 
-    <h2>Role : {role}</h2>
-
-    <h2>Difficulty : {difficulty}</h2>
-
-    <hr>
-
-    <h3>Question 1</h3>
-
-    <p>Explain the difference between List and Tuple in Python.</p>
-    """
+    return render_template(
+        "questions.html",
+        role=role,
+        difficulty=difficulty,
+        questions=ai_questions
+    )
 
 # ---------------- LOGOUT ----------------
 
