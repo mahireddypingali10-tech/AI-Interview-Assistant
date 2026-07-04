@@ -1,4 +1,4 @@
-from ai import generate_questions
+from ai import generate_questions, evaluate_answer
 from flask import Flask, render_template, request, redirect, url_for, session
 from database import get_db_connection
 import bcrypt
@@ -145,19 +145,62 @@ def start_interview():
 
     role = request.form["role"]
     difficulty = request.form["difficulty"]
-    questions = int(request.form["questions"])
+    count = int(request.form["questions"])
 
-    ai_questions = generate_questions(
-        role,
-        difficulty,
-        questions
-    )
+    questions = generate_questions(role, difficulty, count)
+
+    question_list = [
+        q.strip()
+        for q in questions.split("\n")
+        if q.strip()
+    ]
+
+    session["questions"] = question_list
+    session["role"] = role
+    session["difficulty"] = difficulty
+    session["current_question"] = 0
 
     return render_template(
-        "questions.html",
+        "answer.html",
+        question_no=1,
+        total_questions=len(question_list),
+        question=question_list[0],
         role=role,
-        difficulty=difficulty,
-        questions=ai_questions
+        difficulty=difficulty
+    )
+
+@app.route("/evaluate-answer", methods=["POST"])
+def evaluate():
+
+    question = request.form["question"]
+    answer = request.form["answer"]
+
+    feedback = evaluate_answer(question, answer)
+
+    session["current_question"] += 1
+
+    finished = session["current_question"] >= len(session["questions"])
+
+    return render_template(
+        "result.html",
+        feedback=feedback,
+        finished=finished
+    )
+
+@app.route("/next-question")
+def next_question():
+
+    index = session["current_question"]
+
+    questions = session["questions"]
+
+    return render_template(
+        "answer.html",
+        question_no=index + 1,
+        total_questions=len(questions),
+        question=questions[index],
+        role=session["role"],
+        difficulty=session["difficulty"]
     )
 
 # ---------------- LOGOUT ----------------

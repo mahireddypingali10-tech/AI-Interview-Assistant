@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Interview Result</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+
+<body>
+
+<div class="main">
+
+<h1>AI Evaluation</h1>
+
+<div class="actions">
+
+<pre style="white-space:pre-wrap;font-size:18px;">
+{{ feedback }}
+</pre>
+
+<br>
+
+{% if finished %}
+
+<h2>🎉 Interview Completed!</h2>
+
+<a href="/dashboard">
+    <button>Back to Dashboard</button>
+</a>
+
+{% else %}
+
+<a href="/next-question">
+    <button>Next Question →</button>
+</a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</body>
+
+</html>

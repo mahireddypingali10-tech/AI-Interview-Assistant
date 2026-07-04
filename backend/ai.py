@@ -55,3 +55,49 @@ Rules:
 
     except Exception as e:
         return f"AI Error: {str(e)}"
+
+def evaluate_answer(question, answer):
+
+    prompt = f"""
+You are an expert technical interviewer.
+
+Evaluate the candidate's answer.
+
+Question:
+{question}
+
+Candidate Answer:
+{answer}
+
+Respond in exactly this format:
+
+Score: <0-100>
+
+Strengths:
+- ...
+
+Weaknesses:
+- ...
+
+Suggestions:
+- ...
+"""
+
+    try:
+
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            temperature=0.3,
+            max_tokens=500
+        )
+
+        return response.choices[0].message.content
+
+    except Exception as e:
+        return f"AI Error: {e}"    

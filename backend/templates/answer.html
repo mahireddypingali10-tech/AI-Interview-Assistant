@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Answer Question</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+
+<div class="main">
+
+    <h1>🤖 AI Interview</h1>
+
+    <br>
+
+    <h2>Question {{ question_no }} of {{ total_questions }}</h2>
+
+    <div class="actions">
+
+        <p style="font-size:20px;line-height:35px;">
+            {{ question }}
+        </p>
+
+        <br>
+
+        <form action="/evaluate-answer" method="POST">
+
+            <input type="hidden" name="question" value="{{ question }}">
+
+            <input type="hidden" name="role" value="{{ role }}">
+
+            <input type="hidden" name="difficulty" value="{{ difficulty }}">
+
+            <input type="hidden" name="question_no" value="{{ question_no }}">
+
+            <textarea
+                name="answer"
+                rows="10"
+                style="width:100%;padding:20px;font-size:18px;border-radius:10px;"
+                placeholder="Type your answer here..."
+                required></textarea>
+
+            <br><br>
+
+            <button type="submit">
+                Submit Answer
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
